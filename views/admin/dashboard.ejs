@@ -1,0 +1,54 @@
+<%- include('../partials/header', { title: 'Manage notices' }) %>
+
+<section class="page-intro row">
+  <div>
+    <h1>Manage notices</h1>
+    <p><%= notices.length %> notice<%= notices.length === 1 ? '' : 's' %> published.</p>
+  </div>
+  <a class="button" href="/admin/notices/add">Add notice</a>
+</section>
+
+<% if (notices.length === 0) { %>
+
+  <div class="empty">
+    <p>Nothing published yet. Add the first notice to fill the board.</p>
+  </div>
+
+<% } else { %>
+
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Urgency</th>
+          <th>Department</th>
+          <th>Posted</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% notices.forEach(function (notice) { %>
+          <tr>
+            <td><%= notice.title %></td>
+            <td><%= notice.category %></td>
+            <td><span class="tag tag-<%= notice.urgency.toLowerCase() %>"><%= notice.urgency %></span></td>
+            <td><%= notice.authorDepartment %></td>
+            <td><%= notice.createdAt.toLocaleDateString('en-CA') %></td>
+            <td>
+              <!-- Delete uses POST so it cannot be triggered by a plain link -->
+              <form method="POST" action="/admin/notices/delete/<%= notice._id %>"
+                    onsubmit="return confirm('Delete this notice permanently?');">
+                <button type="submit" class="link-danger">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+
+<% } %>
+
+<%- include('../partials/footer') %>

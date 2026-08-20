@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> | NoticeHub</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="/">
+        <span class="brand-mark">NH</span>
+        <span>
+          <strong>NoticeHub</strong>
+          <small>Humber College</small>
+        </span>
+      </a>
+
+      <nav class="nav">
+        <!-- Navbar changes depending on whether an admin is signed in -->
+        <% if (admin) { %>
+          <span class="nav-welcome">Welcome, <%= admin.displayName %></span>
+          <a href="/admin">Manage notices</a>
+          <a class="nav-button" href="/logout">Log out</a>
+        <% } else { %>
+          <a class="nav-button" href="/login">Admin login</a>
+        <% } %>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">

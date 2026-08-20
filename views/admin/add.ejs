@@ -1,0 +1,54 @@
+<%- include('../partials/header', { title: 'Add notice' }) %>
+
+<section class="panel">
+  <h1>Add a notice</h1>
+  <p class="hint">Published to the public board as soon as you save.</p>
+
+  <% if (errors.length > 0) { %>
+    <div class="errors">
+      <p><strong>Fix the following before saving:</strong></p>
+      <ul>
+        <% errors.forEach(function (err) { %>
+          <li><%= err.msg %></li>
+        <% }); %>
+      </ul>
+    </div>
+  <% } %>
+
+  <!-- value / selected attributes keep whatever was typed if validation fails -->
+  <form method="POST" action="/admin/notices/add">
+
+    <label for="title">Title</label>
+    <input type="text" id="title" name="title" value="<%= values.title %>">
+
+    <label for="category">Category</label>
+    <select id="category" name="category">
+      <option value="">Select a category</option>
+      <% categories.forEach(function (c) { %>
+        <option value="<%= c %>" <%= values.category === c ? 'selected' : '' %>><%= c %></option>
+      <% }); %>
+    </select>
+
+    <label for="urgency">Urgency</label>
+    <select id="urgency" name="urgency">
+      <option value="">Select an urgency level</option>
+      <% urgencies.forEach(function (u) { %>
+        <option value="<%= u %>" <%= values.urgency === u ? 'selected' : '' %>><%= u %></option>
+      <% }); %>
+    </select>
+
+    <label for="authorDepartment">Publishing department</label>
+    <input type="text" id="authorDepartment" name="authorDepartment"
+           value="<%= values.authorDepartment %>" placeholder="Office of the Registrar">
+
+    <label for="content">Notice body</label>
+    <textarea id="content" name="content" rows="7"><%= values.content %></textarea>
+
+    <div class="form-actions">
+      <button type="submit">Save notice</button>
+      <a class="button-quiet" href="/admin">Cancel</a>
+    </div>
+  </form>
+</section>
+
+<%- include('../partials/footer') %>

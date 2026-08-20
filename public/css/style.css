@@ -1,0 +1,331 @@
+
+
+:root {
+  --navy: #10263f;
+  --navy-soft: #1d3d5f;
+  --gold: #c8a44b;
+  --page: #f2f5f8;
+  --card: #ffffff;
+  --line: #dde3ea;
+  --text: #1b2733;
+  --muted: #64748b;
+  --low: #2f8f5b;
+  --medium: #c98a12;
+  --high: #c0392b;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  background: var(--page);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+a { color: var(--navy-soft); }
+
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ---------- Header and navigation ---------- */
+
+.site-header {
+  background: var(--navy);
+  color: #fff;
+  border-bottom: 3px solid var(--gold);
+}
+
+.header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: var(--gold);
+  color: var(--navy);
+  font-weight: 700;
+}
+
+.brand strong { display: block; font-size: 18px; letter-spacing: 0.3px; }
+.brand small { display: block; color: #b9c7d6; font-size: 12px; }
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  font-size: 15px;
+}
+
+.nav a { color: #dbe5ee; text-decoration: none; }
+.nav a:hover { color: #fff; text-decoration: underline; }
+.nav-welcome { color: var(--gold); }
+
+.nav-button {
+  padding: 7px 16px;
+  border-radius: 6px;
+  background: var(--gold);
+  color: var(--navy) !important;
+  font-weight: 600;
+}
+.nav-button:hover { background: #d9b662; text-decoration: none !important; }
+
+/* ---------- Page headings ---------- */
+
+.page-intro { margin: 34px 0 24px; }
+.page-intro h1 { margin: 0 0 4px; font-size: 28px; }
+.page-intro p { margin: 0; color: var(--muted); }
+
+.page-intro.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ---------- Public card grid ---------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding-bottom: 40px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--muted);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+/* Left edge colour signals how urgent the notice is */
+.urgency-low { border-left-color: var(--low); }
+.urgency-medium { border-left-color: var(--medium); }
+.urgency-high { border-left-color: var(--high); }
+
+.card-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.badge {
+  background: #e8eef5;
+  color: var(--navy);
+  padding: 4px 11px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.urgency { font-size: 12px; font-weight: 600; text-transform: uppercase; }
+.urgency-low .urgency { color: var(--low); }
+.urgency-medium .urgency { color: var(--medium); }
+.urgency-high .urgency { color: var(--high); }
+
+.card h2 { margin: 0 0 6px; font-size: 19px; line-height: 1.35; }
+
+.meta {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.body {
+  margin: 0;
+  white-space: pre-wrap; /* keeps any line breaks the admin typed */
+}
+
+/* ---------- Panels and forms ---------- */
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px;
+  margin: 34px 0 40px;
+}
+
+.panel.narrow { max-width: 430px; }
+.panel h1 { margin: 0 0 4px; font-size: 24px; }
+.hint { margin: 0 0 20px; color: var(--muted); font-size: 14px; }
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 18px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font: inherit;
+  background: #fff;
+  color: var(--text);
+}
+
+textarea { resize: vertical; }
+
+button, .button {
+  display: inline-block;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  background: var(--navy);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+button:hover, .button:hover { background: var(--navy-soft); }
+
+.button-quiet {
+  display: inline-block;
+  padding: 10px 20px;
+  color: var(--muted);
+  text-decoration: none;
+}
+.button-quiet:hover { color: var(--text); }
+
+.form-actions { display: flex; align-items: center; gap: 8px; }
+
+/* ---------- Validation errors ---------- */
+
+.errors {
+  background: #fdecea;
+  border: 1px solid #f3bfb8;
+  border-left: 5px solid var(--high);
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin-bottom: 22px;
+  color: #7d241a;
+}
+.errors p { margin: 0 0 6px; }
+.errors ul { margin: 0; padding-left: 20px; }
+.errors li { font-size: 14px; }
+
+/* ---------- Admin table ---------- */
+
+.table-scroll { overflow-x: auto; padding-bottom: 40px; }
+
+table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+th, td {
+  padding: 13px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+th {
+  background: var(--navy);
+  color: #fff;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: #f7fafc; }
+
+.tag {
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+}
+.tag-low { background: var(--low); }
+.tag-medium { background: var(--medium); }
+.tag-high { background: var(--high); }
+
+/* Delete button styled as a plain red link inside the table */
+.link-danger {
+  background: none;
+  color: var(--high);
+  padding: 0;
+  font-weight: 600;
+  text-decoration: underline;
+}
+.link-danger:hover { background: none; color: #8e2a20; }
+
+td form { margin: 0; }
+
+/* ---------- Empty state and footer ---------- */
+
+.empty {
+  background: var(--card);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 46px 20px;
+  text-align: center;
+  color: var(--muted);
+  margin-bottom: 40px;
+}
+.empty p { margin: 0; }
+
+.site-footer {
+  background: var(--navy);
+  color: #9fb2c4;
+  padding: 20px 0;
+  font-size: 13px;
+}
+.site-footer p { margin: 0; }
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 600px) {
+  .header-inner { flex-direction: column; align-items: flex-start; }
+  .page-intro h1 { font-size: 23px; }
+  .panel { padding: 20px; }
+}

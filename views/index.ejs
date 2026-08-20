@@ -1,0 +1,44 @@
+<%- include('partials/header', { title: 'Notice board' }) %>
+
+<section class="page-intro">
+  <h1>Campus notice board</h1>
+  <p>Every current announcement from across Humber College, on one page.</p>
+</section>
+
+<% if (notices.length === 0) { %>
+
+  <div class="empty">
+    <p>No notices have been posted yet.</p>
+  </div>
+
+<% } else { %>
+
+  <div class="grid">
+    <% notices.forEach(function (notice) { %>
+      <article class="card urgency-<%= notice.urgency.toLowerCase() %>">
+
+        <div class="card-top">
+          <span class="badge"><%= notice.category %></span>
+          <span class="urgency"><%= notice.urgency %> urgency</span>
+        </div>
+
+        <h2><%= notice.title %></h2>
+
+        <p class="meta">
+          <%= notice.authorDepartment %>
+          &middot;
+          <%= notice.createdAt.toLocaleDateString('en-CA', {
+                year: 'numeric', month: 'long', day: 'numeric'
+              }) %>
+        </p>
+
+        <!-- Full body text is shown here, so no detail page is needed -->
+        <p class="body"><%= notice.content %></p>
+
+      </article>
+    <% }); %>
+  </div>
+
+<% } %>
+
+<%- include('partials/footer') %>
